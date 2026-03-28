@@ -1,0 +1,478 @@
+:root {
+  color-scheme: light;
+  --bg: #f7efe0;
+  --surface: rgba(255, 251, 245, 0.82);
+  --surface-strong: #fffaf1;
+  --surface-alt: #1f3a32;
+  --text: #18221d;
+  --muted: #5b695f;
+  --border: rgba(40, 60, 51, 0.12);
+  --line: rgba(255, 255, 255, 0.1);
+  --accent: #c96b2c;
+  --accent-strong: #a84f18;
+  --accent-soft: rgba(201, 107, 44, 0.12);
+  --success: #2a7f62;
+  --danger: #b13f31;
+  --shadow: 0 24px 60px rgba(52, 38, 18, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(201, 107, 44, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(42, 127, 98, 0.16), transparent 24%),
+    linear-gradient(135deg, #f6e9d2 0%, #f7f0e4 44%, #f3f6ef 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.shell {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.shell-grid {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 20px;
+  min-height: calc(100vh - 48px);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(23, 46, 39, 0.98) 0%, rgba(31, 58, 50, 0.96) 100%);
+  color: #f6efdf;
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.brand-kicker {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(246, 239, 223, 0.7);
+}
+
+.brand-title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.brand-copy {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(246, 239, 223, 0.74);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.nav-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.nav-button:hover {
+  transform: translateX(2px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-button.is-active {
+  background: linear-gradient(135deg, rgba(201, 107, 44, 0.3), rgba(201, 107, 44, 0.12));
+  border-color: rgba(255, 212, 186, 0.24);
+}
+
+.nav-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 18px;
+}
+
+.nav-label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.user-chip,
+.status-chip {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.user-chip strong,
+.status-chip strong {
+  display: block;
+  font-size: 14px;
+}
+
+.user-chip span,
+.status-chip span {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: rgba(246, 239, 223, 0.72);
+}
+
+.logout-button {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content-panel,
+.login-panel {
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.hero {
+  padding: 28px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.05;
+}
+
+.hero p {
+  margin: 10px 0 0;
+  max-width: 620px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.section {
+  padding: 0 28px 28px;
+}
+
+.section-title {
+  margin: 0 0 16px;
+  font-size: 18px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.info-card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.66);
+}
+
+.info-card.is-selected {
+  border-color: rgba(201, 107, 44, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(201, 107, 44, 0.14);
+}
+
+.info-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.meta-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.meta-row {
+  display: grid;
+  gap: 3px;
+}
+
+.meta-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.meta-value {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.empty-state {
+  padding: 28px;
+  border: 1px dashed rgba(24, 34, 29, 0.16);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--muted);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.inline-button,
+.primary-button,
+.secondary-button {
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 13px 16px;
+  border: 0;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: #fff9f2;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.inline-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button:disabled,
+.secondary-button:disabled,
+.inline-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.secondary-button {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--text);
+}
+
+.inline-button {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.login-panel {
+  width: min(560px, 100%);
+  padding: 34px;
+}
+
+.login-kicker {
+  margin: 0 0 10px;
+  color: var(--accent-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+}
+
+.login-panel h1 {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1.02;
+}
+
+.login-panel p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.form {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(24, 34, 29, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  outline: none;
+}
+
+.field input:focus {
+  border-color: rgba(201, 107, 44, 0.42);
+  box-shadow: 0 0 0 4px rgba(201, 107, 44, 0.12);
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.helper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.message {
+  padding: 14px 16px;
+  border-radius: 18px;
+  font-size: 14px;
+}
+
+.message.error {
+  background: rgba(177, 63, 49, 0.1);
+  color: var(--danger);
+}
+
+.message.success {
+  background: rgba(42, 127, 98, 0.12);
+  color: var(--success);
+}
+
+@media (max-width: 980px) {
+  .shell-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    padding: 20px;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 14px;
+  }
+
+  .hero,
+  .section,
+  .login-panel {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero h1,
+  .login-panel h1 {
+    font-size: 30px;
+  }
+
+  .nav {
+    grid-template-columns: 1fr;
+  }
+}
