@@ -45,3 +45,9 @@ export async function updateMentor(mentorId: string, payload: Record<string, unk
     body: payload
   });
 }
+
+export async function approveMentor(mentorId: string) {
+  return apiRequest<ApiResponse<MentorProfileResponse>>(`/api/mentors/${mentorId}/approve`, {
+    method: "PATCH"
+  });
+}

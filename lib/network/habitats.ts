@@ -61,3 +61,9 @@ export async function updateHabitat(habitatId: string, payload: Record<string, u
     body: payload
   });
 }
+
+export async function approveHabitat(habitatId: string) {
+  return apiRequest<ApiResponse<Habitat>>(`/api/habitats/${habitatId}/approve`, {
+    method: "POST"
+  });
+}

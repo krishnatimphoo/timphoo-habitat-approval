@@ -4,8 +4,8 @@ import type { ChangeEvent } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { clearAuthSession, getStoredAuthSession, type StoredAuthSession } from "@/lib/network/token-store";
 import { getCurrentUser, sendOtp, verifyOtp, type UserProfile } from "@/lib/network/auth";
-import { getMyHabitat, type Habitat, updateHabitat } from "@/lib/network/habitats";
-import { getHabitatMentors, type MentorProfileResponse, updateMentor } from "@/lib/network/mentors";
+import { approveHabitat, getMyHabitat, type Habitat, updateHabitat } from "@/lib/network/habitats";
+import { approveMentor, getHabitatMentors, type MentorProfileResponse, updateMentor } from "@/lib/network/mentors";
 
 type NavTab = "habitats" | "trainers";
 type HabitatFilter = "all" | "approved" | "pending" | "rejected" | "removed";
@@ -369,7 +369,10 @@ export default function HabitatApprovalShell() {
     setHabitatActionMessage("");
 
     try {
-      const response = await updateHabitat(habitatId, payload);
+      const response =
+        action === "approve"
+          ? await approveHabitat(habitatId)
+          : await updateHabitat(habitatId, payload);
       const mergedHabitat = mergeHabitatRecord(
         mergeHabitatRecord(selectedHabitat, payload),
         response.data ?? {}
@@ -993,7 +996,10 @@ function TrainersView({
     setActionMessage("");
 
     try {
-      const response = await updateMentor(selectedTrainer.id, payload);
+      const response =
+        action === "approve"
+          ? await approveMentor(selectedTrainer.id)
+          : await updateMentor(selectedTrainer.id, payload);
       const mergedTrainer = {
         ...selectedTrainer.raw,
         ...payload,
