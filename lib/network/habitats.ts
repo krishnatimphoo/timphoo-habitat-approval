@@ -54,3 +54,10 @@ export async function getMyHabitat(accessToken?: string) {
     data: normalizeHabitatList(response.data)
   };
 }
+
+export async function updateHabitat(habitatId: string, payload: Record<string, unknown>) {
+  return apiRequest<ApiResponse<Habitat>>(`/api/habitats/${habitatId}`, {
+    method: "PATCH",
+    body: payload
+  });
+}

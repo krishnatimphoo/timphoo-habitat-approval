@@ -38,3 +38,10 @@ export async function getHabitatMentors(habitatId: string) {
     method: "GET"
   });
 }
+
+export async function updateMentor(mentorId: string, payload: Record<string, unknown>) {
+  return apiRequest<ApiResponse<MentorProfileResponse>>(`/api/mentors/${mentorId}`, {
+    method: "PATCH",
+    body: payload
+  });
+}
